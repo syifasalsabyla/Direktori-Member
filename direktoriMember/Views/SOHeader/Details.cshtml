@@ -1,0 +1,79 @@
+﻿@model direktoriMember.Models.VM.SOHeaderLine
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SOHeader</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SOHeader.Tanggal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SOHeader.Tanggal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SOHeader.NamaMember)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SOHeader.NamaMember)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SOHeader.Member)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SOHeader.MemberID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SOHeader.SOHeaderID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div>
+    <p>
+        <a asp-controller="SOLine" asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Produk
+                </th>
+                <th>
+                    SOHeader
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SOLine)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produk.ProdukID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SOHeader.SOHeaderID)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SOLineID">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.SOLineID">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SOLineID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
